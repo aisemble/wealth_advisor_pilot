@@ -1,0 +1,145 @@
+erDiagram
+    CLIENT {
+        int client_id PK
+        string name
+        date birth_date
+        string citizenship
+        string residence_country
+        string occupation
+        float annual_income
+        string employer
+        string industry
+        string marital_status
+        int family_size
+        json dependents_info
+        string risk_profile
+        string market_experience
+        float net_worth
+        string education_level
+        string preferred_language
+        json cultural_preferences
+    }
+
+    FINANCIAL_STATUS {
+        int status_id PK
+        int client_id FK
+        float monthly_income
+        float monthly_expenses
+        json income_sources
+        json expense_breakdown
+        float emergency_fund
+        float cashflow_surplus
+        date last_updated
+    }
+
+    LIABILITIES {
+        int liability_id PK
+        int client_id FK
+        string type
+        float amount
+        float interest_rate
+        date start_date
+        date end_date
+        string status
+    }
+
+    GOALS {
+        int goal_id PK
+        int client_id FK
+        string timeframe
+        string description
+        float target_amount
+        date target_date
+        string status
+        float progress
+        string priority_level
+    }
+
+    INSURANCE {
+        int insurance_id PK
+        int client_id FK
+        string type
+        float coverage_amount
+        float premium
+        date expiry_date
+        string provider
+        string beneficiaries
+    }
+
+    TAX_PROFILE {
+        int tax_id PK
+        int client_id FK
+        string tax_bracket
+        json tax_accounts
+        string filing_status
+        json deductions
+        string tax_residence
+    }
+
+    ESTATE_PLANNING {
+        int estate_id PK
+        int client_id FK
+        bool has_will
+        date will_last_updated
+        json trust_details
+        json beneficiaries
+        string power_of_attorney
+        string healthcare_directive
+    }
+
+    LIFESTYLE {
+        int lifestyle_id PK
+        int client_id FK
+        json travel_preferences
+        json hobbies
+        json education_plans
+        float monthly_discretionary
+        json retirement_lifestyle
+    }
+
+    PORTFOLIO {
+        int portfolio_id PK
+        int client_id FK
+        float total_value
+        date last_rebalance
+        string strategy_type
+        float target_return
+        float current_return
+        float risk_score
+        json esg_preferences
+        json sector_allocation
+        json geographic_allocation
+    }
+
+    MARKET_VIEWS {
+        int view_id PK
+        int client_id FK
+        json economic_outlook
+        json sector_preferences
+        json risk_concerns
+        json investment_interests
+        date last_updated
+    }
+
+    ML_INSIGHTS {
+        int insight_id PK
+        int client_id FK
+        string model_type
+        json prediction_results
+        float confidence_score
+        date generation_date
+        json next_best_actions
+        json churn_risk
+        json investment_suggestions
+    }
+
+    CLIENT ||--o{ FINANCIAL_STATUS : has
+    CLIENT ||--o{ LIABILITIES : owns
+    CLIENT ||--o{ GOALS : sets
+    CLIENT ||--o{ INSURANCE : holds
+    CLIENT ||--o{ TAX_PROFILE : maintains
+    CLIENT ||--o{ ESTATE_PLANNING : has
+    CLIENT ||--o{ LIFESTYLE : defines
+    CLIENT ||--o{ PORTFOLIO : owns
+    CLIENT ||--o{ MARKET_VIEWS : expresses
+    CLIENT ||--o{ ML_INSIGHTS : generates
